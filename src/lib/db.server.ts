@@ -30,6 +30,36 @@ try {
       FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
     );
   `);
+
+  // Если в БД нет ни одного активного преподавателя по роли — слушатель не увидит выбор в заявке.
+  // Добавляем служебные карточки (пароли legacy: DemoTeach1 / DemoTeach2). Админ может удалить или сменить.
+  const teacherCount = db
+    .prepare(
+      `
+      SELECT COUNT(*) AS c
+      FROM users u
+      JOIN roles r ON r.role_id = u.role_id
+      WHERE r.role_name = 'teacher' AND u.account_status = 'active'
+    `,
+    )
+    .get() as { c: number };
+  if (teacherCount.c === 0) {
+    const tr = db.prepare("SELECT role_id FROM roles WHERE role_name = 'teacher'").get() as { role_id: number } | undefined;
+    if (tr) {
+      const seeds: Array<[string, string, string]> = [
+        ["Иванова Мария Петровна", "seed.teacher1@school.portal", "hashed_DemoTeach1"],
+        ["Петров Сергей Александрович", "seed.teacher2@school.portal", "hashed_DemoTeach2"],
+      ];
+      for (const [fullName, email, hash] of seeds) {
+        db.prepare(
+          `
+          INSERT OR IGNORE INTO users (role_id, full_name, email, phone, password_hash, account_status)
+          VALUES (?, ?, ?, NULL, ?, 'active')
+        `,
+        ).run(tr.role_id, fullName, email, hash);
+      }
+    }
+  }
 } catch (e) {
   console.error("DB Init Error:", e);
 }

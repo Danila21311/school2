@@ -32,8 +32,16 @@ export function EnrollDialog({
         if (!mounted) return;
         setCurrentUser(user ? { role: user.role, phone: user.phone } : null);
         if (user?.role === "student") {
-          const rows = (await getTeachersFn()) as Array<{ user_id: number; full_name: string }>;
-          if (mounted) setTeachers(rows);
+          try {
+            const rows = (await getTeachersFn()) as Array<{ user_id: number; full_name: string }>;
+            if (mounted) setTeachers(rows);
+          } catch (err) {
+            console.error(err);
+            if (mounted) {
+              setTeachers([]);
+              toast.error("Не удалось загрузить список преподавателей. Попробуйте позже.");
+            }
+          }
         } else {
           setTeachers([]);
         }
@@ -120,6 +128,12 @@ export function EnrollDialog({
                 </option>
               ))}
             </select>
+            {currentUser?.role === "student" && teachers.length === 0 ? (
+              <p className="text-xs text-amber-900/80">
+                В каталоге пока нет преподавателей. Можно отправить заявку без предпочтений или попросить администратора
+                завести аккаунты преподавателей.
+              </p>
+            ) : null}
           </label>
           <Field name="comment" label="Комментарий" textarea placeholder="Дополнительная информация" />
           <div className="grid grid-cols-2 gap-3 mt-2">

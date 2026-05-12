@@ -225,14 +225,22 @@ export const createUserFn = createServerFn({ method: "POST" })
 export const getTeachersFn = createServerFn({ method: "GET" }).handler(async () => {
   await requireUser(["student", "admin", "teacher"]);
   const db = (await import("./db.server")).default;
+  // Роль teacher ИЛИ назначенный ведущий опубликованного курса (на случай устаревшей роли в users).
   return db
     .prepare(
       `
-      SELECT u.user_id, u.full_name, u.email
-      FROM users u
-      JOIN roles r ON u.role_id = r.role_id
-      WHERE r.role_name = 'teacher' AND u.account_status = 'active'
-      ORDER BY u.full_name
+      SELECT user_id, full_name, email FROM (
+        SELECT u.user_id, u.full_name, u.email
+        FROM users u
+        JOIN roles r ON u.role_id = r.role_id
+        WHERE r.role_name = 'teacher' AND u.account_status = 'active'
+        UNION
+        SELECT u.user_id, u.full_name, u.email
+        FROM users u
+        INNER JOIN courses c ON c.teacher_id = u.user_id
+        WHERE c.course_status = 'published' AND u.account_status = 'active'
+      ) AS t
+      ORDER BY t.full_name COLLATE NOCASE
     `,
     )
     .all() as Array<{ user_id: number; full_name: string; email: string }>;
