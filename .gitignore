@@ -16,6 +16,9 @@ dist-ssr
 .nitro
 *.local
 
+# Local SQLite (не коммить прод-данные)
+portal.db
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars

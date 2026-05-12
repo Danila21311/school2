@@ -2,7 +2,9 @@ import Database from "better-sqlite3";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-const dbPath = join(process.cwd(), "portal.db");
+// На Render: при Persistent Disk укажи полный путь, например /data/portal.db
+const dbPath =
+  process.env.PORTAL_DB_PATH?.trim() || join(process.cwd(), "portal.db");
 const schemaPath = join(process.cwd(), "database-schema.sqlite.sql");
 const db = new Database(dbPath);
 

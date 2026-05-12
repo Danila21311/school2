@@ -1,9 +1,16 @@
+# Подключи репозиторий в Render → "New Blueprint Instance" — сервис создастся сам.
+# Если корень Git не папка с package.json, а родительская, раскомментируй rootDir.
+version: "1"
 services:
   - type: web
     name: liquid-school-portal
-    env: node
-    buildCommand: "npm install && npm run build"
-    startCommand: "node server.js"
+    runtime: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    # rootDir: liquid-school-portal-main
     envVars:
-      - key: NODE_VERSION
-        value: "20"
+      - key: NODE_ENV
+        value: production
