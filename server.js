@@ -1,7 +1,8 @@
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
-import workerEntry from './dist/server/index.js'
+// С `cloudflare: false` в vite TanStack кладёт entry в `server.js`, не `index.js`.
+import workerEntry from './dist/server/server.js'
 
 const app = new Hono()
 
