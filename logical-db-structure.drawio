@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" agent="Cascade">
+  <diagram name="Logical DB Structure" id="logical-db-structure">
+    <mxGraphModel dx="3509" dy="2114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="roles" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="РОЛИ ПОЛЬЗОВАТЕЛЕЙ&lt;br&gt;&lt;b&gt;role_id (PK)&lt;/b&gt;&lt;br&gt;role_name&lt;br&gt;description" vertex="1">
+          <mxGeometry height="100" width="210" x="-10" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="users" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ПОЛЬЗОВАТЕЛИ&lt;br&gt;&lt;b&gt;user_id (PK)&lt;/b&gt;&lt;br&gt;role_id (FK)&lt;br&gt;full_name&lt;br&gt;email&lt;br&gt;phone&lt;br&gt;password_hash&lt;br&gt;account_status" vertex="1">
+          <mxGeometry height="170" width="230" x="335" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="action_types" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ТИПЫ ДЕЙСТВИЙ&lt;br&gt;&lt;b&gt;action_type_id (PK)&lt;/b&gt;&lt;br&gt;action_name&lt;br&gt;short_name&lt;br&gt;description" vertex="1">
+          <mxGeometry height="115" width="220" x="-50" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЖУРНАЛ ДЕЙСТВИЙ&lt;br&gt;&lt;b&gt;log_id (PK)&lt;/b&gt;&lt;br&gt;user_id (FK)&lt;br&gt;action_type_id (FK)&lt;br&gt;action_description&lt;br&gt;created_at" vertex="1">
+          <mxGeometry height="130" width="230" x="200" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="categories" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="КАТЕГОРИИ КУРСОВ&lt;br&gt;&lt;b&gt;category_id (PK)&lt;/b&gt;&lt;br&gt;category_name&lt;br&gt;description" vertex="1">
+          <mxGeometry height="100" width="220" x="-10" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="courses" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="КУРСЫ&lt;br&gt;&lt;b&gt;course_id (PK)&lt;/b&gt;&lt;br&gt;category_id (FK)&lt;br&gt;teacher_id (FK)&lt;br&gt;title&lt;br&gt;short_description&lt;br&gt;duration_hours&lt;br&gt;price&lt;br&gt;course_status" vertex="1">
+          <mxGeometry height="185" width="240" x="420" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="modules" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="МОДУЛИ КУРСОВ&lt;br&gt;&lt;b&gt;module_id (PK)&lt;/b&gt;&lt;br&gt;course_id (FK)&lt;br&gt;module_title&lt;br&gt;module_description&lt;br&gt;sort_order" vertex="1">
+          <mxGeometry height="130" width="230" x="740" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="materials" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="УЧЕБНЫЕ МАТЕРИАЛЫ&lt;br&gt;&lt;b&gt;material_id (PK)&lt;/b&gt;&lt;br&gt;module_id (FK)&lt;br&gt;material_title&lt;br&gt;material_type&lt;br&gt;material_url&lt;br&gt;material_content&lt;br&gt;sort_order" vertex="1">
+          <mxGeometry height="165" width="240" x="1000" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="assignments" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАДАНИЯ&lt;br&gt;&lt;b&gt;assignment_id (PK)&lt;/b&gt;&lt;br&gt;module_id (FK)&lt;br&gt;assignment_title&lt;br&gt;assignment_description&lt;br&gt;due_date&lt;br&gt;max_score" vertex="1">
+          <mxGeometry height="145" width="240" x="920" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="requests" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАЯВКИ НА ОБУЧЕНИЕ&lt;br&gt;&lt;b&gt;request_id (PK)&lt;/b&gt;&lt;br&gt;course_id (FK)&lt;br&gt;user_id (FK)&lt;br&gt;applicant_name&lt;br&gt;applicant_email&lt;br&gt;applicant_phone&lt;br&gt;request_status&lt;br&gt;created_at" vertex="1">
+          <mxGeometry height="180" width="250" x="230" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="enrollments" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАЧИСЛЕНИЯ НА КУРСЫ&lt;br&gt;&lt;b&gt;enrollment_id (PK)&lt;/b&gt;&lt;br&gt;user_id (FK)&lt;br&gt;course_id (FK)&lt;br&gt;enrollment_status&lt;br&gt;progress_percent&lt;br&gt;enrolled_at&lt;br&gt;completed_at" vertex="1">
+          <mxGeometry height="165" width="250" x="720" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="submissions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ОТВЕТЫ НА ЗАДАНИЯ&lt;br&gt;&lt;b&gt;submission_id (PK)&lt;/b&gt;&lt;br&gt;assignment_id (FK)&lt;br&gt;user_id (FK)&lt;br&gt;answer_text&lt;br&gt;file_url&lt;br&gt;score&lt;br&gt;teacher_comment" vertex="1">
+          <mxGeometry height="165" width="240" x="620" y="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="progress" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ПРОГРЕСС ОБУЧЕНИЯ&lt;br&gt;&lt;b&gt;progress_id (PK)&lt;/b&gt;&lt;br&gt;enrollment_id (FK)&lt;br&gt;material_id (FK)&lt;br&gt;is_completed&lt;br&gt;completed_at" vertex="1">
+          <mxGeometry height="130" width="240" x="820" y="445" as="geometry" />
+        </mxCell>
+        <mxCell id="e_roles_users" edge="1" parent="1" source="roles" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="users" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_logs" edge="1" parent="1" source="users" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="logs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_action_logs" edge="1" parent="1" source="action_types" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="logs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_categories_courses" edge="1" parent="1" source="categories" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="courses" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_courses" edge="1" parent="1" source="users" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="courses" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_modules" edge="1" parent="1" source="courses" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="modules" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_modules_materials" edge="1" parent="1" source="modules" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="materials" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_modules_assignments" edge="1" parent="1" source="modules" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="assignments" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_assignments_submissions" edge="1" parent="1" source="assignments" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="submissions" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_submissions" edge="1" parent="1" source="users" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="submissions" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_requests" edge="1" parent="1" source="courses" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="requests" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_requests" edge="1" parent="1" source="users" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="requests" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_enrollments" edge="1" parent="1" source="users" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="enrollments" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_enrollments" edge="1" parent="1" source="courses" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="enrollments" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_enrollments_progress" edge="1" parent="1" source="enrollments" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="progress" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_materials_progress" edge="1" parent="1" source="materials" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;" target="progress" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

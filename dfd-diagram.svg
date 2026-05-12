@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="5" dy="5" stdDeviation="0" flood-color="#555" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="798" fill="#fff" stroke="#333" stroke-width="1"/>
+
+  <line x1="0" y1="90" x2="1200" y2="90" stroke="#333" stroke-width="1"/>
+  <line x1="0" y1="705" x2="1200" y2="705" stroke="#333" stroke-width="1"/>
+
+  <line x1="165" y1="0" x2="165" y2="90" stroke="#333" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="90" stroke="#333" stroke-width="1"/>
+  <line x1="825" y1="0" x2="825" y2="90" stroke="#333" stroke-width="1"/>
+  <line x1="1020" y1="0" x2="1020" y2="90" stroke="#333" stroke-width="1"/>
+  <line x1="230" y1="705" x2="230" y2="799" stroke="#333" stroke-width="1"/>
+  <line x1="860" y1="705" x2="860" y2="799" stroke="#333" stroke-width="1"/>
+
+  <text x="12" y="24" font-family="Times New Roman" font-size="16">USED AT:</text>
+  <text x="180" y="24" font-family="Times New Roman" font-size="15">AUTHOR: студент</text>
+  <text x="180" y="46" font-family="Times New Roman" font-size="15">PROJECT: Веб-платформа дистанционного обучения</text>
+  <text x="180" y="68" font-family="Times New Roman" font-size="15">NOTES: 1 2 3 4 5 6 7 8 9 10</text>
+  <text x="615" y="24" font-family="Times New Roman" font-size="15">DATE: 10.05.2026</text>
+  <text x="615" y="46" font-family="Times New Roman" font-size="15">REV: 1</text>
+  <text x="840" y="24" font-family="Times New Roman" font-size="15">WORKING</text>
+  <text x="840" y="50" font-family="Times New Roman" font-size="15">RECOMMENDED</text>
+  <text x="1040" y="24" font-family="Times New Roman" font-size="15">CONTEXT:</text>
+  <text x="1080" y="58" font-family="Times New Roman" font-size="18">TOP</text>
+
+  <rect x="70" y="175" width="220" height="120" fill="#f8f8f8" stroke="#111" stroke-width="3" filter="url(#shadow)"/>
+  <text x="180" y="240" text-anchor="middle" font-family="Times New Roman" font-size="20">Слушатель</text>
+  <text x="75" y="192" font-family="Times New Roman" font-size="14">1</text>
+
+  <rect x="70" y="390" width="220" height="120" fill="#f8f8f8" stroke="#111" stroke-width="3" filter="url(#shadow)"/>
+  <text x="180" y="455" text-anchor="middle" font-family="Times New Roman" font-size="20">Преподаватель</text>
+  <text x="75" y="407" font-family="Times New Roman" font-size="14">2</text>
+
+  <rect x="70" y="585" width="220" height="90" fill="#f8f8f8" stroke="#111" stroke-width="3" filter="url(#shadow)"/>
+  <text x="180" y="637" text-anchor="middle" font-family="Times New Roman" font-size="20">Администратор</text>
+  <text x="75" y="602" font-family="Times New Roman" font-size="14">3</text>
+
+  <rect x="760" y="280" width="360" height="210" rx="12" ry="12" fill="#f8f8f8" stroke="#111" stroke-width="3" filter="url(#shadow)"/>
+  <text x="765" y="298" font-family="Times New Roman" font-size="14">0?</text>
+  <text x="1110" y="298" font-family="Times New Roman" font-size="14">0</text>
+  <text x="940" y="360" text-anchor="middle" font-family="Times New Roman" font-size="22">Веб-платформа</text>
+  <text x="940" y="390" text-anchor="middle" font-family="Times New Roman" font-size="22">дистанционного обучения</text>
+  <text x="940" y="420" text-anchor="middle" font-family="Times New Roman" font-size="22">для ООО «Интерактив»</text>
+
+  <path d="M290 205 H510 V305 H760" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="420" y="195" font-family="Times New Roman" font-size="15">Регистрационные данные</text>
+
+  <path d="M290 235 H545 V335 H760" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="405" y="225" font-family="Times New Roman" font-size="15">Заявка на обучение</text>
+
+  <path d="M760 365 H505 V265 H290" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="440" y="255" font-family="Times New Roman" font-size="15">Список курсов и материалы</text>
+
+  <path d="M760 395 H590 V420 H290" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="430" y="410" font-family="Times New Roman" font-size="15">Информация о прогрессе</text>
+
+  <path d="M290 430 H585 V425 H760" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="385" y="420" font-family="Times New Roman" font-size="15">Учебные материалы</text>
+
+  <path d="M290 465 H615 V455 H760" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="385" y="455" font-family="Times New Roman" font-size="15">Оценки и комментарии</text>
+
+  <path d="M760 455 H640 V490 H290" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="400" y="482" font-family="Times New Roman" font-size="15">Выполненные задания</text>
+
+  <path d="M290 610 H540 V480 H760" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="370" y="600" font-family="Times New Roman" font-size="15">Данные курсов и пользователей</text>
+
+  <path d="M760 320 H500 V640 H290" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380" y="630" font-family="Times New Roman" font-size="15">Отчеты и список заявок</text>
+
+  <text x="100" y="745" font-family="Times New Roman" font-size="16">NODE:</text>
+  <text x="100" y="775" font-family="Times New Roman" font-size="16">A-0</text>
+  <text x="250" y="745" font-family="Times New Roman" font-size="16">TITLE:</text>
+  <text x="335" y="745" font-family="Times New Roman" font-size="16">Веб-платформа дистанционного обучения для ООО «Интерактив»</text>
+  <text x="885" y="745" font-family="Times New Roman" font-size="16">NUMBER:</text>
+</svg>

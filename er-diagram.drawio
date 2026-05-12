@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" agent="Cascade">
+  <diagram name="ER Diagram" id="er-interactive-learning">
+    <mxGraphModel dx="2163" dy="2100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="roles" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="РОЛИ ПОЛЬЗОВАТЕЛЕЙ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер роли&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название роли&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание роли" vertex="1">
+          <mxGeometry height="110" width="210" x="40" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="users" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ПОЛЬЗОВАТЕЛИ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер пользователя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер роли&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; ФИО&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; email&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; телефон&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; пароль" vertex="1">
+          <mxGeometry height="165" width="230" x="430" y="-95" as="geometry" />
+        </mxCell>
+        <mxCell id="categories" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="КАТЕГОРИИ КУРСОВ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер категории&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название категории&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание категории" vertex="1">
+          <mxGeometry height="115" width="230" x="20" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="courses" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="КУРСЫ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер курса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер категории&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер преподавателя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название курса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; длительность&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; статус курса" vertex="1">
+          <mxGeometry height="180" width="240" x="15" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="modules" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="МОДУЛИ КУРСОВ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер модуля&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер курса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название модуля&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание модуля&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; порядок отображения" vertex="1">
+          <mxGeometry height="150" width="230" x="820" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="materials" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="УЧЕБНЫЕ МАТЕРИАЛЫ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер материала&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер модуля&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название материала&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; тип материала&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; ссылка&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; содержимое" vertex="1">
+          <mxGeometry height="165" width="240" x="820" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="requests" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАЯВКИ НА ОБУЧЕНИЕ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер заявки&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер курса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер пользователя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; ФИО заявителя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; email заявителя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; статус заявки&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; дата заявки" vertex="1">
+          <mxGeometry height="175" width="250" x="340" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="enrollments" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАЧИСЛЕНИЯ НА КУРСЫ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер зачисления&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер пользователя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер курса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; статус обучения&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; процент прогресса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; дата зачисления" vertex="1">
+          <mxGeometry height="160" width="245" x="650" y="607.5" as="geometry" />
+        </mxCell>
+        <mxCell id="assignments" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЗАДАНИЯ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер задания&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер модуля&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; название задания&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание задания&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; срок сдачи&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; максимальный балл" vertex="1">
+          <mxGeometry height="160" width="240" x="1200" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="submissions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ОТВЕТЫ НА ЗАДАНИЯ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер ответа&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер задания&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер пользователя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; текст ответа&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; балл&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; комментарий преподавателя" vertex="1">
+          <mxGeometry height="160" width="250" x="870" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="progress" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ПРОГРЕСС ОБУЧЕНИЯ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер прогресса&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер зачисления&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер материала&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; материал завершен&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; дата завершения" vertex="1">
+          <mxGeometry height="135" width="250" x="1010" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontFamily=Times New Roman;fontSize=13;fillColor=#ffffff;strokeColor=#111111;" value="ЖУРНАЛ ДЕЙСТВИЙ&lt;br&gt;&lt;font color=&#39;#1d4ed8&#39;&gt;◆&lt;/font&gt; номер записи&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; номер пользователя&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; тип действия&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; описание действия&lt;br&gt;&lt;font color=&#39;#dc2626&#39;&gt;◆&lt;/font&gt; дата действия" vertex="1">
+          <mxGeometry height="140" width="230" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_roles_users" edge="1" parent="1" source="roles" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="users" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_courses" edge="1" parent="1" source="users" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="courses" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_categories_courses" edge="1" parent="1" source="categories" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="courses" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_modules" edge="1" parent="1" source="courses" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="modules" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_modules_materials" edge="1" parent="1" source="modules" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="materials" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_modules_assignments" edge="1" parent="1" source="modules" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="assignments" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_requests" edge="1" parent="1" source="courses" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="requests" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_requests" edge="1" parent="1" source="users" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="requests" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_enrollments" edge="1" parent="1" source="users" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="enrollments" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_courses_enrollments" edge="1" parent="1" source="courses" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="enrollments" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_assignments_submissions" edge="1" parent="1" source="assignments" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="submissions" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_submissions" edge="1" parent="1" source="users" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="submissions" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_enrollments_progress" edge="1" parent="1" source="enrollments" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="progress" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_materials_progress" edge="1" parent="1" source="materials" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="progress" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_users_logs" edge="1" parent="1" source="users" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;strokeColor=#333333;fontFamily=Times New Roman;fontSize=12;" target="logs" value="1:M">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
