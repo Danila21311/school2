@@ -7,8 +7,9 @@ services:
     runtime: node
     region: frankfurt
     plan: free
-    # NODE_ENV=production на билде иначе npm не ставит devDependencies — vite и lovable-config там.
-    buildCommand: npm install --include=dev && npm run build
+    # NODE_ENV=production заставляет npm пропускать devDependencies; без них не соберётся Vite.
+    # NPM_CONFIG_PRODUCTION=false надёжнее, чем --include=dev, на разных версиях npm.
+    buildCommand: NPM_CONFIG_PRODUCTION=false npm ci && npm run build
     startCommand: npm start
     healthCheckPath: /
     # rootDir: liquid-school-portal-main
