@@ -224,7 +224,9 @@ export const createUserFn = createServerFn({ method: "POST" })
 
 export const getTeachersFn = createServerFn({ method: "GET" }).handler(async () => {
   await requireUser(["student", "admin", "teacher"]);
-  const db = (await import("./db.server")).default;
+  const dbmod = await import("./db.server");
+  const db = dbmod.default;
+  dbmod.ensureEnrollmentTeacherSeeds(db);
   // Роль teacher ИЛИ назначенный ведущий опубликованного курса (на случай устаревшей роли в users).
   return db
     .prepare(

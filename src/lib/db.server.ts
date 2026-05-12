@@ -2,11 +2,67 @@ import Database from "better-sqlite3";
 import { readFileSync } from "fs";
 import { join } from "path";
 
+type SqliteDatabase = InstanceType<typeof Database>;
+
 // На Render: при Persistent Disk укажи полный путь, например /data/portal.db
 const dbPath =
   process.env.PORTAL_DB_PATH?.trim() || join(process.cwd(), "portal.db");
 const schemaPath = join(process.cwd(), "database-schema.sqlite.sql");
 const db = new Database(dbPath);
+
+try {
+  db.pragma("foreign_keys = ON");
+} catch {
+  /* ignore */
+}
+
+/**
+ * Гарантирует, что в БД есть хотя бы два преподавателя для формы записи на программу.
+ * Вызывается при старте и при каждом запросе списка (на случай «пустой» прод-БД).
+ * Пароли legacy: DemoTeach1 / DemoTeach2 (см. portal-db verifyPassword).
+ */
+export function ensureEnrollmentTeacherSeeds(database: SqliteDatabase) {
+  try {
+    const row = database
+      .prepare(
+        `
+      SELECT COUNT(*) AS c
+      FROM users u
+      JOIN roles r ON r.role_id = u.role_id
+      WHERE r.role_name = 'teacher' AND u.account_status = 'active'
+    `,
+      )
+      .get() as { c: number | bigint } | undefined;
+    const n = Number(row?.c ?? 0);
+    if (n > 0) return;
+
+    const tr = database
+      .prepare("SELECT role_id FROM roles WHERE role_name = 'teacher'")
+      .get() as { role_id: number } | undefined;
+    if (!tr) return;
+
+    const seeds: Array<[string, string, string]> = [
+      ["Иванова Мария Петровна", "roster.t1@noreply.portal.invalid", "hashed_DemoTeach1"],
+      ["Петров Сергей Александрович", "roster.t2@noreply.portal.invalid", "hashed_DemoTeach2"],
+    ];
+
+    const upsert = database.prepare(`
+      INSERT INTO users (role_id, full_name, email, phone, password_hash, account_status)
+      VALUES (?, ?, ?, NULL, ?, 'active')
+      ON CONFLICT(email) DO UPDATE SET
+        role_id = excluded.role_id,
+        full_name = excluded.full_name,
+        password_hash = excluded.password_hash,
+        account_status = 'active'
+    `);
+
+    for (const [fullName, email, hash] of seeds) {
+      upsert.run(tr.role_id, fullName, email, hash);
+    }
+  } catch (e) {
+    console.error("ensureEnrollmentTeacherSeeds:", e);
+  }
+}
 
 try {
   const hasRolesTable = db
@@ -31,35 +87,7 @@ try {
     );
   `);
 
-  // Если в БД нет ни одного активного преподавателя по роли — слушатель не увидит выбор в заявке.
-  // Добавляем служебные карточки (пароли legacy: DemoTeach1 / DemoTeach2). Админ может удалить или сменить.
-  const teacherCount = db
-    .prepare(
-      `
-      SELECT COUNT(*) AS c
-      FROM users u
-      JOIN roles r ON r.role_id = u.role_id
-      WHERE r.role_name = 'teacher' AND u.account_status = 'active'
-    `,
-    )
-    .get() as { c: number };
-  if (teacherCount.c === 0) {
-    const tr = db.prepare("SELECT role_id FROM roles WHERE role_name = 'teacher'").get() as { role_id: number } | undefined;
-    if (tr) {
-      const seeds: Array<[string, string, string]> = [
-        ["Иванова Мария Петровна", "seed.teacher1@school.portal", "hashed_DemoTeach1"],
-        ["Петров Сергей Александрович", "seed.teacher2@school.portal", "hashed_DemoTeach2"],
-      ];
-      for (const [fullName, email, hash] of seeds) {
-        db.prepare(
-          `
-          INSERT OR IGNORE INTO users (role_id, full_name, email, phone, password_hash, account_status)
-          VALUES (?, ?, ?, NULL, ?, 'active')
-        `,
-        ).run(tr.role_id, fullName, email, hash);
-      }
-    }
-  }
+  ensureEnrollmentTeacherSeeds(db);
 } catch (e) {
   console.error("DB Init Error:", e);
 }
