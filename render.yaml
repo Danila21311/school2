@@ -12,5 +12,7 @@ services:
     healthCheckPath: /
     # rootDir: liquid-school-portal-main
     envVars:
+      - key: NODE_VERSION
+        value: "22.14.0"
       - key: NODE_ENV
         value: production

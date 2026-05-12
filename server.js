@@ -1,12 +1,8 @@
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import workerEntry from './dist/server/index.js'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = new Hono()
 
 // Разрешаем раздавать статику
@@ -36,5 +32,6 @@ const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
 console.log(`Starting Node.js server on port ${port}...`)
 serve({
   fetch: app.fetch,
-  port
+  port,
+  hostname: '0.0.0.0',
 })
