@@ -11,6 +11,18 @@ const INITIAL_ASSISTANT_MESSAGE: Message = {
   content: "Здравствуйте! Я ИИ-помощник платформы. Могу помочь с выбором направления и обучением.",
 };
 
+function isLikelyHtml(input: string): boolean {
+  const trimmed = input.trim();
+  return trimmed.startsWith("<") || /<html|<!doctype|<style|<head/i.test(trimmed);
+}
+
+function normalizeAssistantReply(input: string): string {
+  if (!input || isLikelyHtml(input)) {
+    return "Не удалось получить ответ. Проверьте OPENROUTER_API_KEY на сервере или попробуйте позже.";
+  }
+  return input;
+}
+
 function sanitizeMessages(raw: unknown): Message[] {
   if (!Array.isArray(raw)) return [INITIAL_ASSISTANT_MESSAGE];
   const cleaned = raw
@@ -25,7 +37,8 @@ function sanitizeMessages(raw: unknown): Message[] {
     })
     .map((m) => ({
       role: m.role,
-      content: m.content.slice(0, 4000),
+      content:
+        m.role === "assistant" ? normalizeAssistantReply(m.content) : m.content.slice(0, 4000),
     }))
     .slice(-MAX_STORED_MESSAGES);
 
@@ -78,10 +91,17 @@ function AiPage() {
           history: newHistory.filter((m) => m.role !== "assistant" || m.content.length > 0),
         },
       });
-      setMessages((prev) => [...prev, { role: "assistant", content: result.answer }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: normalizeAssistantReply(result.answer) }]);
     } catch (err: any) {
-      toast.error(err?.message || "Ошибка ИИ-помощника");
-      setMessages((prev) => [...prev, { role: "assistant", content: "Не удалось получить ответ. Попробуйте еще раз." }]);
+      const message = typeof err?.message === "string" ? err.message : "Ошибка ИИ-помощника";
+      const shortMessage = isLikelyHtml(message)
+        ? "ИИ-помощник недоступен. Проверьте OPENROUTER_API_KEY на Render."
+        : message.slice(0, 200);
+      toast.error(shortMessage);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: normalizeAssistantReply(shortMessage) },
+      ]);
     } finally {
       setPending(false);
     }

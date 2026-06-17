@@ -61,6 +61,31 @@ function readOpenRouterKeyFromDevVars(): string | null {
   }
 }
 
+function isLikelyHtml(input: string): boolean {
+  const trimmed = input.trim();
+  return (
+    trimmed.startsWith("<") ||
+    /<html|<!doctype|<style|<head/i.test(trimmed)
+  );
+}
+
+function shortenErrorDetails(status: number, details: string): string {
+  if (isLikelyHtml(details)) {
+    if (status === 401 || status === 403) return "неверный API-ключ";
+    if (status === 502 || status === 503) return "сервис временно недоступен";
+    return "некорректный ответ сервиса";
+  }
+  return details.replace(/\s+/g, " ").slice(0, 180);
+}
+
+function getOpenRouterReferer(): string {
+  return (
+    process.env.RENDER_EXTERNAL_URL ||
+    process.env.SITE_URL ||
+    "https://liquid-school-portal.onrender.com"
+  );
+}
+
 export async function callOpenRouter(data: { message: string; history?: ChatMessage[] }) {
   const apiKey = process.env.OPENROUTER_API_KEY || readOpenRouterKeyFromDevVars();
   if (!apiKey) {
@@ -101,7 +126,7 @@ ${SITE_CONTEXT}
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "http://localhost:8080",
+          "HTTP-Referer": getOpenRouterReferer(),
           "X-Title": "Liquid School Portal",
         },
         body: requestBody,
@@ -126,13 +151,29 @@ ${SITE_CONTEXT}
 
   if (!response.ok) {
     const details = await response.text();
-    throw new Error(`Ошибка OpenRouter: ${response.status} ${details}`);
+    throw new Error(
+      `Ошибка OpenRouter (${response.status}): ${shortenErrorDetails(response.status, details)}`,
+    );
   }
 
-  const payload = (await response.json()) as {
-    choices?: Array<{ message?: { content?: string } }>;
-  };
-  const answer = toPlainText(payload.choices?.[0]?.message?.content?.trim() || "");
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    throw new Error("OpenRouter вернул некорректный ответ");
+  }
+
+  let payload: { choices?: Array<{ message?: { content?: string } }> };
+  try {
+    payload = (await response.json()) as typeof payload;
+  } catch {
+    throw new Error("OpenRouter вернул некорректный JSON");
+  }
+
+  const rawAnswer = payload.choices?.[0]?.message?.content?.trim() || "";
+  if (isLikelyHtml(rawAnswer)) {
+    throw new Error("OpenRouter вернул некорректный ответ");
+  }
+
+  const answer = toPlainText(rawAnswer);
   if (!answer) throw new Error("OpenRouter вернул пустой ответ");
 
   return { answer };
