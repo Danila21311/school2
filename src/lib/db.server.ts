@@ -43,6 +43,15 @@ try {
       FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
     );
   `);
+
+  const userCount = db.prepare("SELECT COUNT(*) as count FROM users").get() as { count: number };
+  if (userCount.count === 0) {
+    const seedPath = join(process.cwd(), "database-seed.sqlite.sql");
+    if (existsSync(seedPath)) {
+      db.exec(readFileSync(seedPath, "utf-8"));
+      console.log("Seeded default users into portal.db");
+    }
+  }
 } catch (e) {
   console.error("DB Init Error:", e);
 }
